@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd
+          http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--访问以下资源不需要权限-->
+    <security:http security="none" pattern="/*.html" />
+    <security:http security="none" pattern="/css/**" />
+    <security:http security="none" pattern="/img/**" />
+    <security:http security="none" pattern="/plugins/**" />
+    <security:http security="none" pattern="/js/**" />
+    <security:http security="none" pattern="/seller/add.do" />
+
+
+    <security:http auto-config="true" use-expressions="false" >
+
+        <security:intercept-url pattern="/**" access="ROLE_SELLER" />
+
+        <!--
+            登录页面login.jsp
+            login-processing-url 验证的url
+            username-parameter 客户端提交的用户名的参数名
+            password-parameter 客户端提交的密码的参数名
+             authentication-failure-url ：认证失败后跳转到failer.jsp
+        -->
+        <security:form-login login-page="/shoplogin.html"
+                             login-processing-url="/shoplogin.do"
+                             authentication-failure-url="/shoplogin.html"
+                             default-target-url="/admin/index.html"
+                             always-use-default-target="true"
+        />
+
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"></security:frame-options>
+        </security:headers>
+        <!-- 关闭CSRF,默认是开启的 -->
+        <security:csrf disabled="true" />
+
+        <!--设置注销-->
+        <security:logout logout-url="/logout" logout-success-url="/login.html" invalidate-session="true"></security:logout>
+    </security:http>
+
+    <!--配置密码加密对象-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+
+
+    <!--认证管理器-->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userService">
+            <!--对密码进行加密-->
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <dubbo:application name="pinyougou_shop_web"/>
+    <dubbo:registry address="zookeeper://192.168.25.129:2181"/>
+    <dubbo:annotation package="com.pinyougou.shop.service"/>
+
+
+
+</beans>
