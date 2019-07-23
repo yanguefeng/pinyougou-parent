@@ -19,7 +19,6 @@ public class ItemSearchController {
     @RequestMapping("/search.do")
     public Map search(@RequestBody Map searchMap){
         Map map = itemSerachService.search(searchMap);
-
         return map;
     }
 

@@ -4,6 +4,7 @@ import java.util.Map;
 
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.TbSpecificationOption;
@@ -17,6 +18,7 @@ import com.pinyougou.pojo.TbTypeTemplate;
 import com.pinyougou.pojo.TbTypeTemplateExample;
 import com.pinyougou.pojo.TbTypeTemplateExample.Criteria;
 import com.pinyougou.sellergoods.service.TypeTemplateService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -86,15 +88,21 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 			typeTemplateMapper.deleteByPrimaryKey(id);
 		}		
 	}
-	
-	
+
+
+	/**
+	 * 分页以及条件分页查询
+	 * @param typeTemplate
+	 * @param pageNum 当前页 码
+	 * @param pageSize 每页记录数
+	 * @return
+	 */
 	@Override
 	public PageResult findPage(TbTypeTemplate typeTemplate, int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		
 		TbTypeTemplateExample example=new TbTypeTemplateExample();
 		Criteria criteria = example.createCriteria();
-		
+
 		if(typeTemplate!=null){			
 						if(typeTemplate.getName()!=null && typeTemplate.getName().length()>0){
 				criteria.andNameLike("%"+typeTemplate.getName()+"%");
@@ -111,7 +119,8 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 	
 		}
 		
-		Page<TbTypeTemplate> page= (Page<TbTypeTemplate>)typeTemplateMapper.selectByExample(example);		
+		Page<TbTypeTemplate> page= (Page<TbTypeTemplate>)typeTemplateMapper.selectByExample(example);
+		saveToRedis();
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
@@ -158,4 +167,27 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		return list;
 	}
 
+	@Autowired
+	private RedisTemplate redisTemplate;
+
+	/**
+	 * 把数据存入到缓存中
+	 */
+	private void saveToRedis(){
+
+		//获取全部的模板数据
+		List<TbTypeTemplate> templateList = findAll();
+		//循环模板
+		for (TbTypeTemplate template : templateList) {
+			//存储品牌到缓存
+			List<Map> brandList = JSON.parseArray(template.getBrandIds(), Map.class);
+			//把模板id当做键，集合当做值
+			redisTemplate.boundHashOps("brandList").put(template.getId(),brandList);
+
+			//将规格列表存储到缓存中
+			//根据模板id查询规格列表,将模板id当做键，规格集合列表当做值
+			List<Map> specList = findSpecList(template.getId());
+			redisTemplate.boundHashOps("specList").put(template.getId(),specList);
+		}
+	}
 }

@@ -11,6 +11,7 @@ import com.pinyougou.pojo.TbItemCat;
 import com.pinyougou.pojo.TbItemCatExample;
 import com.pinyougou.pojo.TbItemCatExample.Criteria;
 import com.pinyougou.sellergoods.service.ItemCatService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -100,6 +101,10 @@ public class ItemCatServiceImpl implements ItemCatService {
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
+
+	@Autowired
+	private RedisTemplate redisTemplate;
+
 	@Override
 	public List<TbItemCat> findByParentId(Long id) {
 
@@ -107,6 +112,12 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Criteria criteria = example.createCriteria();
 		criteria.andParentIdEqualTo(id);
 		List<TbItemCat> tbItemCats = itemCatMapper.selectByExample(example);
+		//调用方法的时候把分类名作为键，typeiId作为值存储到redis缓存中
+		List<TbItemCat> itemCatList = findAll();
+		for (TbItemCat itemCat : itemCatList) {
+			redisTemplate.boundHashOps("itemCatList").put(itemCat.getName(),itemCat.getTypeId());
+		}
+
 		return tbItemCats;
 	}
 
