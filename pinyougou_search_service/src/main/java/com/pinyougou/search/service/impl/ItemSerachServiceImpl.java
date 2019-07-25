@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.search.service.ItemSerachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.Criteria;
@@ -12,7 +13,6 @@ import org.springframework.data.solr.core.query.FilterQuery;
 import org.springframework.data.solr.core.query.GroupOptions;
 import org.springframework.data.solr.core.query.HighlightOptions;
 import org.springframework.data.solr.core.query.HighlightQuery;
-import org.springframework.data.solr.core.query.IfFunction;
 import org.springframework.data.solr.core.query.Query;
 import org.springframework.data.solr.core.query.SimpleFilterQuery;
 import org.springframework.data.solr.core.query.SimpleHighlightQuery;
@@ -77,6 +77,10 @@ public class ItemSerachServiceImpl implements ItemSerachService {
      */
     private Map searchMap1(Map searchMap){
         Map map = new HashMap();
+
+        //空格处理
+        String keywords = (String) searchMap.get("keywords");
+        searchMap.put("keywords",keywords.replace(" ",""));
         //创建查询条件对象
         HighlightQuery query = new SimpleHighlightQuery();
 
@@ -146,6 +150,20 @@ public class ItemSerachServiceImpl implements ItemSerachService {
         //设置每页显示的条数
         query.setRows(pageSize);
 
+        //1.8排序设置
+        String sortValue = (String) searchMap.get("sort");
+        String sortFile = (String) searchMap.get("sortFile");
+        if (sortValue!=null && !sortValue.equals("")){//判断是否有排序方式
+            if (sortValue.equals("ASC")){//判断是否为升序
+                Sort sort = new Sort(Sort.Direction.ASC,"item_"+sortFile);
+                query.addSort(sort);
+            }
+
+            if (sortValue.equals("DESC")){//判断是否为降序
+                Sort sort = new Sort(Sort.Direction.ASC,"item_"+sortFile);
+                query.addSort(sort);
+            }
+        }
 
         /*
         ########################### 高亮查询设置 ###################################
@@ -170,10 +188,13 @@ public class ItemSerachServiceImpl implements ItemSerachService {
             //entry.getHighlights().get(0).getSnipplets()获取第一个高亮域的内容
             //entry.getHighlights().get(0).getSnipplets().get(0) 一个高亮域中可能存在多值
             //判断高亮区域
-            if (entry.getHighlights().get(0).getSnipplets().size()>0 && entry.getHighlights().size()>0){
-                //设置title，修改为高亮区域
-                tbItem.setTitle(entry.getHighlights().get(0).getSnipplets().get(0));
+            if(entry.getHighlights() != null && entry.getHighlights().size() > 0) {
+                if (entry.getHighlights().get(0).getSnipplets().size()>0 ){
+                    //设置title，修改为高亮区域
+                    tbItem.setTitle(entry.getHighlights().get(0).getSnipplets().get(0));
+                }
             }
+
         }
         //给map集合添加高亮数据
         map.put("rows",page.getContent());
