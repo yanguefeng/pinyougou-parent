@@ -17,6 +17,7 @@ import org.springframework.data.solr.core.query.Query;
 import org.springframework.data.solr.core.query.SimpleFilterQuery;
 import org.springframework.data.solr.core.query.SimpleHighlightQuery;
 import org.springframework.data.solr.core.query.SimpleQuery;
+import org.springframework.data.solr.core.query.SolrDataQuery;
 import org.springframework.data.solr.core.query.result.GroupEntry;
 import org.springframework.data.solr.core.query.result.GroupPage;
 import org.springframework.data.solr.core.query.result.GroupResult;
@@ -68,6 +69,25 @@ public class ItemSerachServiceImpl implements ItemSerachService {
         }
 
         return map;
+    }
+
+    /**
+     * 通过goods的id删除solr索引库中的对应的数据
+     * @param ids
+     */
+    @Override
+    public void deleteToSolrItemList(Long[] ids) {
+        SolrDataQuery query = new SimpleQuery();
+        Criteria criteria = new Criteria("item_goodsid").in(ids);
+        query.addCriteria(criteria);
+        solrTemplate.delete(query);
+        solrTemplate.commit();
+    }
+
+    @Override
+    public void importItemToSolr(List list) {
+        solrTemplate.saveBeans(list);
+        solrTemplate.commit();
     }
 
 

@@ -3,7 +3,10 @@ import java.util.List;
 
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.entity.Result;
+import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojogroup.Goods;
+import com.pinyougou.search.service.ItemSerachService;
+import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -123,6 +126,13 @@ public class GoodsController {
 	public Result updateStatus(Long[] ids,String status){
 		try {
 			goodsService.updateStatus(ids,status);
+			if ("1".equals(status)){
+				List<TbItem> itemList = goodsService.findByGoodsIdTbitem(ids, status);
+				if (itemList.size()>0){
+					//当集合中有数据的时候添加到solr索引库中
+					itemSerachService.importItemToSolr(itemList);
+				}
+			}
 			return new Result(true,"审核通过成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,6 +140,9 @@ public class GoodsController {
 		}
 	}
 
+
+	@Reference
+	private ItemSerachService itemSerachService;
 
 	/**
 	 * 实现逻辑删除
@@ -139,6 +152,8 @@ public class GoodsController {
 	public Result uplateIsDelete(Long[] ids){
 		try {
 			goodsService.uplateIsDelete(ids);
+			//当后台删除数据的时候要删除对应的在solr库中的数据
+			itemSerachService.deleteToSolrItemList(ids);
 			return new Result(true,"删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.pojo.TbGoods;
+import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojogroup.Goods;
 
 /**
@@ -86,4 +87,11 @@ public interface GoodsService {
 	public void uplateIsMarketable(Long[] ids,String status);
 
 
+	/**
+	 * 通过goodsId查询Tbitem（sku列表）全部的信息
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	public List<TbItem> findByGoodsIdTbitem(Long[] ids,String status);
 }
