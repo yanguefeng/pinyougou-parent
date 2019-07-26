@@ -131,5 +131,9 @@ app.controller("searchController", function ($scope,$location ,searchService) {
         }
         return false;
     }
+
+    $scope.top=function () {
+        window.scrollTo(0,0);
+    }
 });
 

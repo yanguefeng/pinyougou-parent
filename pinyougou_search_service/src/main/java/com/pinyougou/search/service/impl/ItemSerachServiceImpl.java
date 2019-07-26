@@ -142,13 +142,13 @@ public class ItemSerachServiceImpl implements ItemSerachService {
             //获取最大值和最小值
             String minPrice = priceStr[0];
             String maxPrice= priceStr[1];
-            if (!minPrice.equals("0")){
+            if (!minPrice.equals("0")){//判断最小是不为零
                 Criteria filterCriteria = new Criteria("item_price").greaterThanEqual(minPrice);
                 FilterQuery filterQuery = new SimpleFilterQuery(filterCriteria);
                 query.addFilterQuery(filterQuery);
             }
 
-            if ("*".equals(maxPrice)){
+            if ("*".equals(maxPrice)){//判断最大值是否为无限大代表的字符*
                 Criteria filterCriteria = new Criteria("item_price").lessThanEqual(minPrice);
                 FilterQuery filterQuery = new SimpleFilterQuery(filterCriteria);
                 query.addFilterQuery(filterQuery);
@@ -180,7 +180,7 @@ public class ItemSerachServiceImpl implements ItemSerachService {
             }
 
             if (sortValue.equals("DESC")){//判断是否为降序
-                Sort sort = new Sort(Sort.Direction.ASC,"item_"+sortFile);
+                Sort sort = new Sort(Sort.Direction.DESC,"item_"+sortFile);
                 query.addSort(sort);
             }
         }

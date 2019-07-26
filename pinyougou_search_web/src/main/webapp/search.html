@@ -23,18 +23,6 @@
 				background-color: #1aa5fb;
 			}
 		</style>
-
-		<script>
-            window.onload = function() {
-                if(document.body.scrollTop > 0) {
-                    console.log(1);
-                    window.scrollTo(0, -1);
-                    document.body.scrollTop = 0;
-                }
-                window.scrollTo(0, -1);
-                document.body.scrollTop = 0;
-            }
-		</script>
 	</head>
 
 	<body ng-app="pinyougou" ng-controller="searchController" ng-init="loadKeyords()">
@@ -331,7 +319,7 @@
 							</li>
 							<li class="dotted" ng-if="firstDot"><span >...</span></li>
 							<li class="{{searchMap.currentPage==page?'active':''}}" ng-repeat="page in pageList">
-								<a href="#" ng-click="queryByCurrenPage(page)">{{page}}</a>
+								<a href="#" ng-click="queryByCurrenPage(page);top()">{{page}}</a>
 							</li>
 							<li class="dotted" ng-if="lastDot"><span >...</span></li>
 							<li class="next" class="{{isEndPage()?'disabled':''}} ">
