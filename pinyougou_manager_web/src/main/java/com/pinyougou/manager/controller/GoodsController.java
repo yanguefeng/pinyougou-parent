@@ -3,9 +3,11 @@ import java.util.List;
 
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.entity.Result;
+import com.pinyougou.page.service.ItemPageService;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojogroup.Goods;
 import com.pinyougou.search.service.ItemSerachService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -161,4 +163,15 @@ public class GoodsController {
 		}
 	}
 
+	@Reference
+	private ItemPageService itemPageService;
+
+	/**
+	 * 生成模板
+	 * @param goodsid
+	 */
+	@RequestMapping("/genHtml.do")
+	public void genHtml(Long goodsid){
+		itemPageService.getItemHtml(goodsid);
+	}
 }
