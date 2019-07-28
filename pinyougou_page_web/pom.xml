@@ -11,5 +11,21 @@
 
     <artifactId>pinyougou_page_web</artifactId>
 
+    <build>
+            <plugins>
+                <!--tomcat插件，启动当前web应用-->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <!--修改tomcat启动的端口号-->
+                        <port>9105</port>
+                        <!--修改tomcat部署当前项目虚拟目录（项目的访问跟路径）-->
+                        <path>/</path>
+                    </configuration>
 
+                </plugin>
+            </plugins>
+        </build>
 </project>
