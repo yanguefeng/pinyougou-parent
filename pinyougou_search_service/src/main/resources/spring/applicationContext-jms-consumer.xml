@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--真正可以产生connection的connectionFactory，由jms服务商提供产生-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.25.129:61616"></property>
+    </bean>
+    <!--spring用于管理真正的connectionFactory的SingleConnectionFactory-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+    </bean>
+
+    <!--spring提供的工具类，可以发送消息和接收消息-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+    </bean>
+
+    <!--队列的目的，点对点形式接收更新消息，-->
+    <bean id="activeMQQueueUpdate" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="pinyougou_queue_update_solr"></constructor-arg>
+    </bean>
+    <!--<bean id="queueUpdateSolrMessage" class="com.pinyougou.search.service.impl.QueueUpdateSolrMessage"></bean>-->
+    <!--更新消息监听器-->
+    <bean  class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="activeMQQueueUpdate"></property>
+        <property name="messageListener" ref="itemSearchUpdateSolrListener"></property>
+    </bean>
+
+    <!--队列的目的，点对点形式删除消息，-->
+    <bean id="activeMQQueueDelete" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="pinyougou_queue_delete_solr"></constructor-arg>
+    </bean>
+    <!--<bean id="queueUpdateSolrMessage" class="com.pinyougou.search.service.impl.QueueUpdateSolrMessage"></bean>-->
+    <!--删除消息监听器-->
+    <bean  class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="activeMQQueueDelete"></property>
+        <property name="messageListener" ref="itemSearchDeleteSolrListener"></property>
+    </bean>
+</beans>

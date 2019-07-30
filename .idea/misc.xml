@@ -4,6 +4,7 @@
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_content_service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_manager_web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_page_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou_page_web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_protal_web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_search_service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou_search_web" />
@@ -16,6 +17,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/pinyougou_search_web/pom.xml" />
+        <option value="D:/develop/pingyougou/springDataSolr_demo/pom.xml" />
       </list>
     </option>
   </component>

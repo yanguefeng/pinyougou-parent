@@ -1,20 +1,26 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.entity.Result;
-import com.pinyougou.page.service.ItemPageService;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojogroup.Goods;
-import com.pinyougou.search.service.ItemSerachService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.sellergoods.service.GoodsService;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.xml.soap.Text;
 
 /**
  * controller
@@ -117,6 +123,15 @@ public class GoodsController {
 		return goodsService.findPage(goods, page, rows);		
 	}
 
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+
+	@Autowired
+	private Destination activeMQQueueUpdate;//用于发送更新solr的消息
+
+	@Autowired
+	private Destination activeMQTopicProductHtml;//用于发送生成商品html的消息
 
 	/**
 	 * 商品的审核
@@ -132,7 +147,24 @@ public class GoodsController {
 				List<TbItem> itemList = goodsService.findByGoodsIdTbitem(ids, status);
 				if (itemList.size()>0){
 					//当集合中有数据的时候添加到solr索引库中
-					itemSerachService.importItemToSolr(itemList);
+					//itemSerachService.importItemToSolr(itemList);
+					//调用消息中间件发送消息
+					String text = JSON.toJSONString(itemList);
+					jmsTemplate.send(activeMQQueueUpdate, new MessageCreator() {
+						@Override
+						public Message createMessage(Session session) throws JMSException {
+							return session.createTextMessage(text);
+						}
+					});
+				}
+				for (Long goodsid : ids) {
+					//商品详情模板生成,调用消息中间件发送消息
+					jmsTemplate.send(activeMQTopicProductHtml, new MessageCreator() {
+						@Override
+						public Message createMessage(Session session) throws JMSException {
+							return session.createObjectMessage(goodsid);
+						}
+					});
 				}
 			}
 			return new Result(true,"审核通过成功");
@@ -143,8 +175,8 @@ public class GoodsController {
 	}
 
 
-	@Reference
-	private ItemSerachService itemSerachService;
+	@Autowired
+	private Destination activeMQQueueDelete;
 
 	/**
 	 * 实现逻辑删除
@@ -155,7 +187,14 @@ public class GoodsController {
 		try {
 			goodsService.uplateIsDelete(ids);
 			//当后台删除数据的时候要删除对应的在solr库中的数据
-			itemSerachService.deleteToSolrItemList(ids);
+			//itemSerachService.deleteToSolrItemList(ids);
+			//使用activemq完成删除是solr的商品信息的删除
+				jmsTemplate.send(activeMQQueueDelete, new MessageCreator() {
+					@Override
+					public Message createMessage(Session session) throws JMSException {
+						return session.createObjectMessage(ids);
+					}
+				});
 			return new Result(true,"删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,15 +202,13 @@ public class GoodsController {
 		}
 	}
 
-	@Reference
-	private ItemPageService itemPageService;
 
 	/**
 	 * 生成模板
 	 * @param goodsid
 	 */
-	@RequestMapping("/genHtml.do")
+	/*@RequestMapping("/genHtml.do")
 	public void genHtml(Long goodsid){
 		itemPageService.getItemHtml(goodsid);
-	}
+	}*/
 }

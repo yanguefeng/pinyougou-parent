@@ -84,7 +84,7 @@
 				</div>
 				<div class="fr itemInfo-wrap">
 					<div class="sku-name">
-						<h4>${tbgoods.goodsName}</h4>
+						<h4>{{sku.title}}</h4>
 					</div>
 					<div class="news"><span>${tbgoods.caption}</span></div>
 					<div class="summary">
@@ -94,7 +94,7 @@
 							</div>
 							<div class="fl price">
 								<i>¥</i>
-								<em>${tbgoods.price}</em>
+								<em>{{sku.price}}</em>
 								<span>降价通知</span>
 							</div>
 							<div class="fr remark">
@@ -123,7 +123,7 @@
 								</dt>
 								<#list specification.attributeValue as item>
 								<dd><a href="javascript:;"
-									   ng-click="selectSpecification('${specification.attributeName}','${item}')"
+									   ng-click="selectSpecification('${specification.attributeName}','${item}');searchSku()"
 									   class="{{isSelected('${specification.attributeName}','${item}')?'selected':''}}">${item}<span title="点击取消选择">&nbsp;</span></a></dd>
 								</#list>
 							</dl>

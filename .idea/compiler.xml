@@ -23,6 +23,7 @@
         <module name="pinyougou_sellergoods_service" />
         <module name="pinyougou_shop_web" />
         <module name="pinyougou_solr_util" />
+        <module name="springDataSolr_demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -44,6 +45,7 @@
       <module name="pinyougou_sellergoods_service" target="1.8" />
       <module name="pinyougou_shop_web" target="1.8" />
       <module name="pinyougou_solr_util" target="1.8" />
+      <module name="springDataSolr_demo" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
