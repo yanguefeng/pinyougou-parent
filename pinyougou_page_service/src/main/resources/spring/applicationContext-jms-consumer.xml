@@ -39,5 +39,17 @@
         <property name="messageListener" ref="productItemPageListtener"></property>
     </bean>
 
+    <!--队列的目的，点对点形式接收更新消息，-->
+    <bean id="activeMQTopicDeleteHtml" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_delete_page"></constructor-arg>
+    </bean>
+    <!--<bean id="queueUpdateSolrMessage" class="com.pinyougou.search.service.impl.QueueUpdateSolrMessage"></bean>-->
+    <!--更新消息监听器-->
+    <bean  class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="activeMQTopicDeleteHtml"></property>
+        <property name="messageListener" ref="deleteItemPageListtener"></property>
+    </bean>
+
     <context:component-scan base-package="com.pinyougou.page.service.impl"></context:component-scan>
 </beans>

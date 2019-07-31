@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.HashMap;
@@ -97,5 +98,26 @@ public class ItemPageServiceImpl implements ItemPageService {
             return false;
         }
 
+    }
+
+    /**
+     * 删除商品详情页
+     * @param ids
+     * @return
+     */
+    @Override
+    public boolean deleteItemHtml(Long[] ids) {
+
+        try {
+            for (Long goodsid : ids) {
+                File file = new File(pagedir + goodsid + ".html");
+                file.delete();
+            }
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

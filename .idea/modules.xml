@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_demo/alicom-dysms-api/alicom-dysms-api.iml" filepath="D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_demo/alicom-dysms-api/alicom-dysms-api.iml" />
+      <module fileurl="file://D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/msg_demo/alicom-mns-receive-samples/alicom-mns-receive-samples.iml" filepath="D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/msg_demo/alicom-mns-receive-samples/alicom-mns-receive-samples.iml" />
+      <module fileurl="file://D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-core/aliyun-java-sdk-core.iml" filepath="D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-core/aliyun-java-sdk-core.iml" />
+      <module fileurl="file://D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-dysmsapi/aliyun-java-sdk-dysmsapi.iml" filepath="D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-dysmsapi/aliyun-java-sdk-dysmsapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itcast_ssm/itcast_ssm.iml" filepath="$PROJECT_DIR$/itcast_ssm/itcast_ssm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" filepath="$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" filepath="$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" filepath="$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" filepath="$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" />
@@ -20,6 +26,8 @@
       <module fileurl="file://$PROJECT_DIR$/pinyougou_sellergoods_service/pinyougou_sellergoods_service.iml" filepath="$PROJECT_DIR$/pinyougou_sellergoods_service/pinyougou_sellergoods_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_shop_web/pinyougou_shop_web.iml" filepath="$PROJECT_DIR$/pinyougou_shop_web/pinyougou_shop_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_solr_util/pinyougou_solr_util.iml" filepath="$PROJECT_DIR$/pinyougou_solr_util/pinyougou_solr_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_user_service/pinyougou_user_service.iml" filepath="$PROJECT_DIR$/pinyougou_user_service/pinyougou_user_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_user_web/pinyougou_user_web.iml" filepath="$PROJECT_DIR$/pinyougou_user_web/pinyougou_user_web.iml" />
       <module fileurl="file://D:/develop/pingyougou/springDataSolr_demo/springDataSolr_demo.iml" filepath="D:/develop/pingyougou/springDataSolr_demo/springDataSolr_demo.iml" />
     </modules>
   </component>

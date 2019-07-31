@@ -42,4 +42,9 @@
     <bean id="activeMQTopicProductHtml" class="org.apache.activemq.command.ActiveMQTopic">
         <constructor-arg value="pinyougou_topic_page"></constructor-arg>
     </bean>
+
+    <!--队列的目的，订阅消息所用的bean，-->
+    <bean id="activeMQTopicDeleteHtml" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_delete_page"></constructor-arg>
+    </bean>
 </beans>
