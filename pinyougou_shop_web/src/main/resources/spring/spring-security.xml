@@ -65,5 +65,4 @@
     <dubbo:annotation package="com.pinyougou.shop.service"/>
 
 
-
 </beans>

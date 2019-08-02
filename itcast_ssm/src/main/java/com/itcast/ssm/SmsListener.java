@@ -28,6 +28,13 @@ public class SmsListener {
         try {
             SendSmsResponse response = smsUtils.sendSms(map.get("phoneNumber"),
                     map.get("signName"), map.get("templateCode"), map.get("param"));
+
+            System.out.println(map);
+            System.out.println("Code=" + response.getCode());
+            System.out.println("Message=" + response.getMessage());
+            System.out.println("RequestId=" + response.getRequestId());
+            System.out.println("BizId=" + response.getBizId());
+
         } catch (ClientException e) {
             e.printStackTrace();
         }

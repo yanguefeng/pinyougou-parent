@@ -12,6 +12,10 @@
         <module name="aliyun-java-sdk-dysmsapi" />
         <module name="itcast_ssm" />
         <module name="pinyopuogou_user_interface" />
+        <module name="pinyougou_cart_web" />
+        <module name="pinyougou_cat_interface" />
+        <module name="pinyougou_cat_service" />
+        <module name="pinyougou_cat_web" />
         <module name="pinyougou_common" />
         <module name="pinyougou_content_interface" />
         <module name="pinyougou_content_service" />
@@ -44,6 +48,10 @@
       <module name="maven-archiver (1)" target="1.5" />
       <module name="maven-archiver (2)" target="1.5" />
       <module name="pinyopuogou_user_interface" target="1.8" />
+      <module name="pinyougou_cart_web" target="1.8" />
+      <module name="pinyougou_cat_interface" target="1.8" />
+      <module name="pinyougou_cat_service" target="1.8" />
+      <module name="pinyougou_cat_web" target="1.8" />
       <module name="pinyougou_common" target="1.8" />
       <module name="pinyougou_content_interface" target="1.8" />
       <module name="pinyougou_content_service" target="1.8" />

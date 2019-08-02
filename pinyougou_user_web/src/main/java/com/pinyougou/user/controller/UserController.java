@@ -33,7 +33,7 @@ public class UserController {
      */
     @RequestMapping("/register.do")
     @ResponseBody
-    public Result register(String htmlCode,@RequestBody TbUser user){
+    public Result register(@RequestBody TbUser user ,String htmlCode){
         String smscode = (String) redisTemplate.boundHashOps("smscode").get(user.getPhone());//获取缓存中的验证码
         if (smscode ==null && !smscode.equals(htmlCode)){//验证码不相等返回错误信息
             return new Result(false,"验证码有误");

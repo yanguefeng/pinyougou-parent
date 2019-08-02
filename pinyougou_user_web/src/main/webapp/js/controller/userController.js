@@ -2,7 +2,7 @@ app.controller("userController",function ($scope,userService) {
 
     //用户注册
     $scope.register=function (htmlCode) {
-        userService.register(htmlCode,$scope.entity).success(function (response) {
+        userService.register($scope.entity,htmlCode).success(function (response) {
             if (response.success){
                 alert(response.message)
             } else{

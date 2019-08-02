@@ -18,6 +18,7 @@
 </head>
 
 <body ng-app="pinyougou" ng-controller="userController">
+{{entity}}
 	<div class="register py-container ">
 		<!--head-->
 		<div class="logoArea">
@@ -69,7 +70,7 @@
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
-							<a class="sui-btn btn-block btn-xlarge btn-danger" ng-click="isPassword(htmlCode)" href="home.html" target="_blank">完成注册</a>
+							<button class="sui-btn btn-block btn-xlarge btn-danger" target="_blank" ng-click="isPassword(htmlCode)">完成注册</button>
 						</div>
 					</div>
 				</form>

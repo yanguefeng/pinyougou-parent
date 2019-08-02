@@ -30,7 +30,9 @@
         <module>pinyougou_user_service</module>
         <module>pinyougou_user_web</module>
         <module>itcast_ssm</module>
-        <module>pinyougou_web_user</module>
+        <module>pinyougou_cat_interface</module>
+        <module>pinyougou_cat_service</module>
+        <module>pinyougou_cat_web</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->

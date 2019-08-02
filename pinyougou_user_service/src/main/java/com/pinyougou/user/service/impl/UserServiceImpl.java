@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void createSmsCode(String phone) {
-        String code =(long)Math.random()*1000000+"";//产生6为随机的验证码
+        String code = (long) (Math.random()*1000000)+"";//产生6为随机的验证码
         //保存到redis缓存中
         redisTemplate.boundHashOps("smscode").put(phone,code);
 
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
                message.setString("signName",signName);
                message.setString("templateCode",templateCode);
                Map<String, String> stringMap = new HashMap<>();
-               stringMap.put("param",code);
+               stringMap.put("code",code);
                message.setString("param", JSON.toJSONString(stringMap));
                return message;
            }

@@ -8,6 +8,9 @@
       <module fileurl="file://D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-dysmsapi/aliyun-java-sdk-dysmsapi.iml" filepath="D:/develop/pingyougou/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-dysmsapi/aliyun-java-sdk-dysmsapi.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast_ssm/itcast_ssm.iml" filepath="$PROJECT_DIR$/itcast_ssm/itcast_ssm.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" filepath="$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_interface/pinyougou_cat_interface.iml" filepath="$PROJECT_DIR$/pinyougou_cat_interface/pinyougou_cat_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_service/pinyougou_cat_service.iml" filepath="$PROJECT_DIR$/pinyougou_cat_service/pinyougou_cat_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_web/pinyougou_cat_web.iml" filepath="$PROJECT_DIR$/pinyougou_cat_web/pinyougou_cat_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" filepath="$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" filepath="$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" filepath="$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" />
