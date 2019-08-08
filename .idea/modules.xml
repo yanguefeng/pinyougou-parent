@@ -10,27 +10,35 @@
       <module fileurl="file://$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" filepath="$PROJECT_DIR$/pinyopuogou_user_interface/pinyopuogou_user_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_interface/pinyougou_cat_interface.iml" filepath="$PROJECT_DIR$/pinyougou_cat_interface/pinyougou_cat_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_service/pinyougou_cat_service.iml" filepath="$PROJECT_DIR$/pinyougou_cat_service/pinyougou_cat_service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pinyougou_cat_web/pinyougou_cat_web.iml" filepath="$PROJECT_DIR$/pinyougou_cat_web/pinyougou_cat_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" filepath="$PROJECT_DIR$/pinyougou_common/pinyougou_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" filepath="$PROJECT_DIR$/pinyougou_content_interface/pinyougou_content_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" filepath="$PROJECT_DIR$/pinyougou_content_service/pinyougou_content_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_dao/pinyougou_dao.iml" filepath="$PROJECT_DIR$/pinyougou_dao/pinyougou_dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_manager_web/pinyougou_manager_web.iml" filepath="$PROJECT_DIR$/pinyougou_manager_web/pinyougou_manager_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_order_interface/pinyougou_order_interface.iml" filepath="$PROJECT_DIR$/pinyougou_order_interface/pinyougou_order_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_order_service/pinyougou_order_service.iml" filepath="$PROJECT_DIR$/pinyougou_order_service/pinyougou_order_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_page_interface/pinyougou_page_interface.iml" filepath="$PROJECT_DIR$/pinyougou_page_interface/pinyougou_page_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_page_service/pinyougou_page_service.iml" filepath="$PROJECT_DIR$/pinyougou_page_service/pinyougou_page_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_page_web/pinyougou_page_web.iml" filepath="$PROJECT_DIR$/pinyougou_page_web/pinyougou_page_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_parent.iml" filepath="$PROJECT_DIR$/pinyougou_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_pay_interface/pinyougou_pay_interface.iml" filepath="$PROJECT_DIR$/pinyougou_pay_interface/pinyougou_pay_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_pay_service/pinyougou_pay_service.iml" filepath="$PROJECT_DIR$/pinyougou_pay_service/pinyougou_pay_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_pojo/pinyougou_pojo.iml" filepath="$PROJECT_DIR$/pinyougou_pojo/pinyougou_pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_protal_web/pinyougou_protal_web.iml" filepath="$PROJECT_DIR$/pinyougou_protal_web/pinyougou_protal_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_search_interface/pinyougou_search_interface.iml" filepath="$PROJECT_DIR$/pinyougou_search_interface/pinyougou_search_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_search_service/pinyougou_search_service.iml" filepath="$PROJECT_DIR$/pinyougou_search_service/pinyougou_search_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_search_web/pinyougou_search_web.iml" filepath="$PROJECT_DIR$/pinyougou_search_web/pinyougou_search_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_seckill_interface/pinyougou_seckill_interface.iml" filepath="$PROJECT_DIR$/pinyougou_seckill_interface/pinyougou_seckill_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_seckill_service/pinyougou_seckill_service.iml" filepath="$PROJECT_DIR$/pinyougou_seckill_service/pinyougou_seckill_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_seckill_web/pinyougou_seckill_web.iml" filepath="$PROJECT_DIR$/pinyougou_seckill_web/pinyougou_seckill_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_sellergoods_interface/pinyougou_sellergoods_interface.iml" filepath="$PROJECT_DIR$/pinyougou_sellergoods_interface/pinyougou_sellergoods_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_sellergoods_service/pinyougou_sellergoods_service.iml" filepath="$PROJECT_DIR$/pinyougou_sellergoods_service/pinyougou_sellergoods_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_shop_web/pinyougou_shop_web.iml" filepath="$PROJECT_DIR$/pinyougou_shop_web/pinyougou_shop_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_solr_util/pinyougou_solr_util.iml" filepath="$PROJECT_DIR$/pinyougou_solr_util/pinyougou_solr_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_task_service/pinyougou_task_service.iml" filepath="$PROJECT_DIR$/pinyougou_task_service/pinyougou_task_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_user_service/pinyougou_user_service.iml" filepath="$PROJECT_DIR$/pinyougou_user_service/pinyougou_user_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou_user_web/pinyougou_user_web.iml" filepath="$PROJECT_DIR$/pinyougou_user_web/pinyougou_user_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou_web_cart/pinyougou_web_cart.iml" filepath="$PROJECT_DIR$/pinyougou_web_cart/pinyougou_web_cart.iml" />
       <module fileurl="file://D:/develop/pingyougou/springDataSolr_demo/springDataSolr_demo.iml" filepath="D:/develop/pingyougou/springDataSolr_demo/springDataSolr_demo.iml" />
     </modules>
   </component>

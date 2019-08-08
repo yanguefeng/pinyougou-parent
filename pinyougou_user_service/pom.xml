@@ -128,7 +128,7 @@
                     <version>2.2</version>
                     <configuration>
                         <!--修改tomcat启动的端口号-->
-                        <port>9006</port>
+                        <port>9007</port>
                         <!--修改tomcat部署当前项目虚拟目录（项目的访问跟路径）-->
                         <path>/</path>
                     </configuration>

@@ -32,7 +32,16 @@
         <module>itcast_ssm</module>
         <module>pinyougou_cat_interface</module>
         <module>pinyougou_cat_service</module>
-        <module>pinyougou_cat_web</module>
+        <module>pinyougou_web_cart</module>
+        <module>pinyougou_order_interface</module>
+        <module>pinyougou_order_service</module>
+        <module>pinyougou_pay_interface</module>
+        <module>pinyougou_pay_service</module>
+        <module>pinyougou_seckill_interface</module>
+        <module>pinyougou_seckill_service</module>
+        <module>pinyougou_seckill_web</module>
+        <module>com_pinyougou_task</module>
+        <module>pinyougou_task_service</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->

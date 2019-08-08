@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dobbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:spring/applicationContext-dao.xml"></import>
+    <import resource="classpath:spring/applicationContext-redis.xml"></import>
+
+    <dobbo:protocol name="dubbo" port="20888"></dobbo:protocol>
+    <dobbo:application name="pinyougou-order-service"/>
+    <dobbo:registry address="zookeeper://192.168.25.129:2181"/>
+    <!--扫描的包-->
+    <dobbo:annotation package="com.pinyougou.order.service.impl"/>
+
+    <bean id="idWorker" class="com.pinyougou.utils.IdWorker">
+        <!-- 进程ID -->
+        <constructor-arg index="0" value="0"></constructor-arg>
+        <!-- 数据中心ID -->
+        <constructor-arg index="1" value="0"></constructor-arg>
+    </bean>
+</beans>

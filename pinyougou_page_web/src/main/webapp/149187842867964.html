@@ -23,49 +23,49 @@
 		     		    {
 		    "id":1369287,
 			"title":"vivoxp20移动3G32G",
-			"price":2450,
+			"price":0.03,
 			"spec":{"网络":"移动3G","机身内存":"32G"},
 		},
 		    {
 		    "id":1369288,
 			"title":"vivoxp20移动3G64G",
-			"price":2450,
+			"price":0.03,
 			"spec":{"网络":"移动3G","机身内存":"64G"},
 		},
 		    {
 		    "id":1369289,
 			"title":"vivoxp20移动4G32G",
-			"price":2450,
+			"price":0.03,
 			"spec":{"网络":"移动4G","机身内存":"32G"},
 		},
 		    {
 		    "id":1369290,
 			"title":"vivoxp20移动4G64G",
-			"price":3200,
+			"price":0.03,
 			"spec":{"网络":"移动4G","机身内存":"64G"},
 		},
 		    {
 		    "id":1369291,
 			"title":"vivoxp20联通3G32G",
-			"price":2450,
+			"price":0.03,
 			"spec":{"网络":"联通3G","机身内存":"32G"},
 		},
 		    {
 		    "id":1369292,
 			"title":"vivoxp20联通3G64G",
-			"price":3200,
+			"price":0.03,
 			"spec":{"网络":"联通3G","机身内存":"64G"},
 		},
 		    {
 		    "id":1369293,
 			"title":"vivoxp20联通4G32G",
-			"price":2450,
+			"price":0.03,
 			"spec":{"网络":"联通4G","机身内存":"32G"},
 		},
 		    {
 		    "id":1369294,
 			"title":"vivoxp20联通4G64G",
-			"price":3200,
+			"price":0.03,
 			"spec":{"网络":"联通4G","机身内存":"64G"},
 		},
 		];
@@ -289,16 +289,16 @@
 							<div class="fl title">
 								<div class="control-group">
 									<div class="controls">
-										<input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
-										<a href="javascript:void(0)" class="increment plus">+</a>
-										<a href="javascript:void(0)" class="increment mins">-</a>
+										<input autocomplete="off" type="text" value="1" ng-model="num" minnum="1" class="itxt" />
+										<a href="javascript:void(0)" ng-click="addNum(1)" class="increment plus">+</a>
+										<a href="javascript:void(0)" ng-click="addNum(-1)" class="increment mins">-</a>
 									</div>
 								</div>
 							</div>
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a ng-click="addToCart()" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
 									</li>
 								</ul>
 							</div>

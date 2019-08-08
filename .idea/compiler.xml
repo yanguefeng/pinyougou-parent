@@ -15,26 +15,34 @@
         <module name="pinyougou_cart_web" />
         <module name="pinyougou_cat_interface" />
         <module name="pinyougou_cat_service" />
-        <module name="pinyougou_cat_web" />
         <module name="pinyougou_common" />
         <module name="pinyougou_content_interface" />
         <module name="pinyougou_content_service" />
         <module name="pinyougou_dao" />
         <module name="pinyougou_manager_web" />
+        <module name="pinyougou_order_interface" />
+        <module name="pinyougou_order_service" />
         <module name="pinyougou_page_interface" />
         <module name="pinyougou_page_service" />
         <module name="pinyougou_page_web" />
+        <module name="pinyougou_pay_interface" />
+        <module name="pinyougou_pay_service" />
         <module name="pinyougou_pojo" />
         <module name="pinyougou_protal_web" />
         <module name="pinyougou_search_interface" />
         <module name="pinyougou_search_service" />
         <module name="pinyougou_search_web" />
+        <module name="pinyougou_seckill_interface" />
+        <module name="pinyougou_seckill_service" />
+        <module name="pinyougou_seckill_web" />
         <module name="pinyougou_sellergoods_interface" />
         <module name="pinyougou_sellergoods_service" />
         <module name="pinyougou_shop_web" />
         <module name="pinyougou_solr_util" />
+        <module name="pinyougou_task_service" />
         <module name="pinyougou_user_service" />
         <module name="pinyougou_user_web" />
+        <module name="pinyougou_web_cart" />
         <module name="pinyougou_web_user" />
         <module name="springDataSolr_demo" />
       </profile>
@@ -57,21 +65,30 @@
       <module name="pinyougou_content_service" target="1.8" />
       <module name="pinyougou_dao" target="1.8" />
       <module name="pinyougou_manager_web" target="1.8" />
+      <module name="pinyougou_order_interface" target="1.8" />
+      <module name="pinyougou_order_service" target="1.8" />
       <module name="pinyougou_page_interface" target="1.8" />
       <module name="pinyougou_page_service" target="1.8" />
       <module name="pinyougou_page_web" target="1.8" />
       <module name="pinyougou_parent" target="1.8" />
+      <module name="pinyougou_pay_interface" target="1.8" />
+      <module name="pinyougou_pay_service" target="1.8" />
       <module name="pinyougou_pojo" target="1.8" />
       <module name="pinyougou_protal_web" target="1.8" />
       <module name="pinyougou_search_interface" target="1.8" />
       <module name="pinyougou_search_service" target="1.8" />
       <module name="pinyougou_search_web" target="1.8" />
+      <module name="pinyougou_seckill_interface" target="1.8" />
+      <module name="pinyougou_seckill_service" target="1.8" />
+      <module name="pinyougou_seckill_web" target="1.8" />
       <module name="pinyougou_sellergoods_interface" target="1.8" />
       <module name="pinyougou_sellergoods_service" target="1.8" />
       <module name="pinyougou_shop_web" target="1.8" />
       <module name="pinyougou_solr_util" target="1.8" />
+      <module name="pinyougou_task_service" target="1.8" />
       <module name="pinyougou_user_service" target="1.8" />
       <module name="pinyougou_user_web" target="1.8" />
+      <module name="pinyougou_web_cart" target="1.8" />
       <module name="pinyougou_web_user" target="1.8" />
       <module name="springDataSolr_demo" target="1.7" />
     </bytecodeTargetLevel>

@@ -18,4 +18,9 @@
     <dobbo:registry address="zookeeper://192.168.25.129:2181"/>
     <!--扫描的包-->
     <dobbo:annotation package="com.pinyougou.content.service.impl"/>
+
+    <bean id="idWorker" class="com.pinyougou.utils.IdWorker">
+        <constructor-arg index="0" value="0"></constructor-arg>
+        <constructor-arg index="1" value="0"></constructor-arg>
+    </bean>
 </beans>

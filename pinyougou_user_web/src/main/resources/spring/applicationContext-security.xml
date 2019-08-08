@@ -12,7 +12,6 @@
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--访问以下资源不需要权限-->
-    <security:http security="none" pattern="/*.html" />
     <security:http security="none" pattern="/css/**" />
     <security:http security="none" pattern="/img/**" />
     <security:http security="none" pattern="/plugins/**" />
@@ -20,10 +19,6 @@
     <security:http security="none" pattern="/register.html"/>
     <security:http security="none" pattern="/user/register.do" />
     <security:http security="none" pattern="/user/createSmsCode.do" />
-
-    <dubbo:application name="pinyougou_shop_web"/>
-    <dubbo:registry address="zookeeper://192.168.25.129:2181"/>
-    <dubbo:annotation package="com.pinyougou.shop.service"/>
 
     <!--entry-point-ref 入口点引用-->
     <security:http use-expressions="false" entry-point-ref="casProcessingFilterEntryPoint">

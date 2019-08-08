@@ -56,7 +56,5 @@
 	</filter-mapping>
 
 	<!--配置在web.xml中的一个欢迎页，用于当用户在url中输入工程名称或者输入web容器url时直接跳转的页面-->
-	<welcome-file-list>
-		<welcome-file>home-index.html</welcome-file>
-	</welcome-file-list>
+
 </web-app>

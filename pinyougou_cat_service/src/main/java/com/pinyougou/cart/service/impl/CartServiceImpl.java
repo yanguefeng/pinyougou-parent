@@ -7,6 +7,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojogroup.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class CartServiceImpl implements CartService {
         if (tbItem==null){//判断是sku信息是否存在
             throw new RuntimeException("不存在的商品列表信息");
         }
-        if (tbItem.getStatus().equals("1")){//判断列表信息的状态
+        if (!tbItem.getStatus().equals("1")){//判断列表信息的状态
             throw new RuntimeException("商品的列表信息异常");
         }
         //2.获取用户id
@@ -43,6 +44,7 @@ public class CartServiceImpl implements CartService {
         if (cart==null){//4.如果购物车信息不存在
             //4.1创建购物车对象
             cart=new Cart();
+            cart.setSellerId(tbItem.getSellerId());
             cart.setSellerName(tbItem.getSeller());
             List<TbOrderItem> orderItemList = new ArrayList<>();
             TbOrderItem orderItem = createOrderItem(tbItem, num);
@@ -72,7 +74,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        return null;
+        return cartList;
     }
 
     /**
@@ -116,12 +118,53 @@ public class CartServiceImpl implements CartService {
         TbOrderItem orderItem = new TbOrderItem();
         orderItem.setGoodsId(item.getGoodsId());
         orderItem.setItemId(item.getId());
-        orderItem.setNum(orderItem.getNum()+num);
+        orderItem.setNum(num);
         orderItem.setPrice(item.getPrice());
         orderItem.setPicPath(item.getImage());
         orderItem.setTitle(item.getTitle());
-        BigDecimal totalFee = new BigDecimal(orderItem.getNum() * orderItem.getPrice().longValue());
+        BigDecimal totalFee = new BigDecimal(orderItem.getNum() * item.getPrice().doubleValue());
         orderItem.setTotalFee(totalFee);
         return orderItem;
+    }
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    /**
+     * 在redis中查找购物车列表信息
+     * @param username
+     * @return
+     */
+    public List<Cart> findCartListToRedis(String username){
+        return (List<Cart>) redisTemplate.boundHashOps("cartList").get(username);
+    }
+
+
+    /**
+     * 把数据到缓存中
+     * @param username
+     * @param cartList
+     */
+    public void saveCartListToRedis(String username,List<Cart> cartList){
+        redisTemplate.boundHashOps("cartList").put(username,cartList);
+    }
+
+    /**
+     * 合并购物车列表
+     * @param cartListRedis
+     * @param castListCookie
+     * @return
+     */
+    @Override
+    public List<Cart> mergeCartList(List<Cart> cartListRedis, List<Cart> castListCookie) {
+        System.out.println("cartListA"+cartListRedis);//cartListRedis, castListCookie
+        System.out.println("cartListA"+castListCookie);
+        for (Cart cart : castListCookie) {
+            List<TbOrderItem> orderItemList = cart.getOrderItemList();
+            for (TbOrderItem tbOrderItem : orderItemList) {
+                cartListRedis=addGoodsToCartList(castListCookie,tbOrderItem.getItemId(),tbOrderItem.getNum());
+            }
+        }
+        return cartListRedis;
     }
 }
